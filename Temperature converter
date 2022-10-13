@@ -1,0 +1,63 @@
+# defining the list of accepted temperatures. For example, there are 'k', 'kelvin' and 'Kelvin' just in case of different spelling
+tempList = ["k", "c", "f", "kelvin", "celsius", "fahrenheit", "Kelvin", "Celsius", "Fahrenheit"]
+
+# Getting the different inputs: 'fromMSG' is the first temp measurement, 'Inte' is the second one defining how much of the first measurement, and it starts with int() to show that is is an integer. The last input is exactly like the first input, exept for the fact that it is the measurement that you want to transfer to
+fromMSG = input("Enter the first temp measurement: ")
+Inte = int(input("Enter the first temp amount: "))
+toMSG = input("Enter the second temp measurement: ")
+
+# Cheching if both temperature measurements are inside our list above with "in"
+if (fromMSG in tempList) and (toMSG in tempList):
+
+    # Checking if the two measurements are the same with the double = sign
+    if fromMSG == toMSG:
+        print("that is the SAME degree type!")
+
+    # Checking if the first measurement is Kelvin, using the first, fourth and seventh objects of list above (the "kelvin", "k" and "Kelvin" objects). In lists, the first object is list[0], and the second is list[1], and so on
+    elif fromMSG == tempList[0] or fromMSG == tempList[3] or fromMSG == tempList[6]:     # Could be also cone like this: elif fromMSG == "k" or fromMSG == "kelvin" or fromMSG == "Kelvin"
+
+        # Checking the second measurement, then creating a message to print. For example - if ToMSG == [any celsius object], then we will print the message
+        if toMSG == tempList[1] or toMSG == tempList[4] or toMSG == tempList[7]:
+
+            # This message is a bit confusing, so I will break it up. First of all, we begin with a kind message, "alright!". Then, the amount of the measurement, str(Inte). This is a good time to say that in these messages, EVERYTHING needs to be eventually string, so I'll use str(x). Then, I'll mention what measurement was I talking about with "in" + toMSG. Here is the confusing part - str(float((float(Inte) - 273.15))). First, everything is a string, so float((float(Inte) - 273.15)) is the math problem. We are converting Kelvin to Celsius, to we want to keep things as "float" (not a full number). ((float(Inte) - 273.15) This is the final thing. So - the float value of the amount of degrees, minus 273.15 (the formula is online). That is it! I will not explain these in the rest of the formulas, because they are a copy of this, just with a different formula
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float((float(Inte) - 273.15))) + " in " + toMSG)
+
+        elif toMSG == tempList[2] or toMSG == tempList[5] or toMSG == tempList[8]: # Again - I am using tempList[n] to see what object in the list I am talking about. In the rest of the code I will simplify this by saying toMSG == "measurement" as a string
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float(float(Inte) - 273.15) * 1.8 + 32.0) + " in " + toMSG)
+
+    # Repeating the process, but this time we begin with celsius
+    elif fromMSG == "c" or fromMSG == "celsius" or fromMSG == "Celsius":
+
+        if toMSG == "k" or toMSG == "kelvin" or toMSG == "Kelvin":
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float((float(Inte) + 273.15))) + " in " + toMSG)
+
+        elif toMSG == "f" or toMSG == "fahrenheit" or toMSG == "Fahrenheit":
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float(float(Inte) * 9.0/5.0) + 30.0) + " in " + toMSG)
+
+
+    # Repeating the process, but this time we begin with fahrenheit
+    elif fromMSG == "f" or fromMSG == "fahrenheit" or fromMSG == "Fahrenheit":
+
+        if toMSG == "k" or toMSG == "kelvin" or toMSG == "Kelvin":
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float((float(Inte) - 32) * 5.0 / 9.0 + 273.15 )) + " in " + toMSG)
+
+        elif toMSG == "c" or toMSG == "celsius" or toMSG == "Celsius":
+            print("Alright! " + str(Inte) + " in " + fromMSG + " is " + str(float((Inte) - 32.0) * 5 / 9 ) + " in " + toMSG)
+
+
+
+# Code example ('O' is output and 'I' is input) -
+
+# O: Enter first temp measurement:
+
+# I: kelvin
+
+# O: Enter the first temp amount:
+
+# I: 12
+
+# O: Enter the second temp measurement:
+
+# I: Celsius
+
+# O: Alright! 12 in kelvin is -261.15 in Celsius
